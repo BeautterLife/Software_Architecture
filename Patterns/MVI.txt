@@ -1,0 +1,15 @@
+<MVI Pattern>
+
+1) Context
+View와 Model이 밀접하게 결합되어 있다. Model의 인터페이스 변경시 변경의 영향이 View와 Model 둘에게 미친다. 2) Problem
+View/Model 등에 분산되어 관리되는 데이터는 주의깊게 관리해야 한다. View를 업데이트 하기위해서 Model과 View 사이에 의존성이 존재
+3) solution
+- Data와 Action은 한 방향으로만 전달한다. - View에 영향을 주는 State는 한 방향으로만 수정할 수 있다. - Model은 State를 변화시키고 View는 State를 참조만 한다
+Intent가 user 관찰. View가 model 관찰. user가 View 관찰. 4) constraints
+단방향 데이터 흐름을 보장하기 위해 immutable 이어야함. 5) advantage - 데이터가 단방향으로 순환 -> 로직이 예측 가능하고 앱에 문제가 생겼을 경우 추적이 쉽다
+- 상태의 충돌이 없다 (앱은 한 번에 하나의 불변 상태만 가질 수 있기 때문) - View와 Model의 역할이 명확해 테스트/디버깅/기능 추가 가 수월하다
+6) disadvantage - 단일 이벤트(안드로이드) 문제 - 진입장벽이 높다
+- component가 역할에 따라 명확히 분류되어, 파일이 많아진다 -> 객체 생성 비용 증가
+7) 적용사례
+Andriod
+view(model(intent())
